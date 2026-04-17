@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import pronaWebImg from "@assets/prona-web.png";
 import trackinoImg from "@assets/trackino.png";
 import pronaMobileImg from "@assets/prona-mobile.png";
@@ -242,25 +242,29 @@ export function Projects() {
                   </span>
                 )}
               </div>
+              <div className="mt-5 flex items-center justify-end text-[11px] uppercase tracking-[0.14em] text-white/35 group-hover:text-white/70 transition-colors">
+              see more
+                <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+              </div>
             </motion.div>
           ))}
         </div>
 
         <div className="relative mt-8">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[0.22, 0.14, 0.08].map((opacity, index) => (
+            {[0.35, 0.26, 0.18].map((opacity, index) => (
               <div
                 key={index}
-                className="h-[320px] rounded-3xl border border-white/[0.04] bg-white/[0.015]"
+                className={`h-[320px] rounded-3xl border border-white/[0.08] bg-white/[0.03] ${index > 0 ? "hidden md:block" : ""}`}
                 style={{ opacity }}
               />
             ))}
           </div>
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-background/35 to-background/90" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-background/18 to-background/72" />
 
           <div className="pointer-events-none absolute inset-x-0 top-8 z-10 flex justify-center">
-            <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-white/45 backdrop-blur-sm">
+            <span className="rounded-full border border-white/15 bg-black/25 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-sm">
               More on request
             </span>
           </div>

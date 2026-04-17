@@ -29,6 +29,18 @@ export function Contact() {
           Open to mid-level roles and selective freelance projects.
         </p>
 
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45">
+          <span className="rounded-full border border-white/10 px-3 py-1.5">
+            Frontend Engineer
+          </span>
+          <span className="rounded-full border border-white/10 px-3 py-1.5">
+            React / TypeScript
+          </span>
+          <span className="rounded-full border border-white/10 px-3 py-1.5">
+            Remote-friendly
+          </span>
+        </div>
+
         <motion.a
           href="mailto:aldamuhaxhiri14@gmail.com"
           whileHover={{ scale: 1.05 }}
@@ -39,6 +51,10 @@ export function Contact() {
           <span className="absolute inset-0 bg-gradient-to-r from-rose-500 via-pink-500 to-fuchsia-500 blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-300" />
           <span className="relative text-white">Say Hello →</span>
         </motion.a>
+
+        <p className="mt-5 text-sm text-white/40">
+          Usually replies within 24 hours.
+        </p>
 
         <motion.div
           initial={{ opacity: 0 }}
