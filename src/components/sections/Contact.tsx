@@ -1,21 +1,8 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Copy, Download, Mail } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import cvFile from "@assets/Alda_Muhaxhiri_CV.pdf";
 
 export function Contact() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText("aldamuhaxhiri14@gmail.com");
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      setCopied(false);
-    }
-  };
-
   return (
     <section id="contact" className="relative mx-auto max-w-6xl overflow-hidden px-6 py-28 text-center">
       <motion.div
