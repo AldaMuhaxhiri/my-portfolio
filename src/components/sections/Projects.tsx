@@ -101,7 +101,7 @@ const projects: Project[] = [
     approach:
       "Architected a consumer-facing Next.js website alongside a full-featured React admin dashboard with role-based access, bulk data export, and real-time content moderation. Integrated WebSocket live chat, secure payments, and multilingual support.",
     result:
-      "Deployed for 500K+ monthly European users. The admin dashboard cut operational workflows from hours to minutes, and multilingual support measurably increased cross-border engagement.",
+      "Deployed for a large monthly European audience. The admin dashboard cut operational workflows from hours to minutes, and multilingual support measurably increased cross-border engagement.",
   },
 ];
 
