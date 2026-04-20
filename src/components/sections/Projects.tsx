@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import pronaWebImg from "@assets/prona-web.png";
 import trackinoImg from "@assets/trackino.png";
 import pronaMobileImg from "@assets/prona-mobile.png";
+
+import { cn } from "@/lib/utils";
 
 interface Project {
   id: string;
@@ -175,9 +177,45 @@ function BrowserMockup({
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false);
+  const moreInfoRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedProject(null);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [selectedProject]);
+
+  useEffect(() => {
+    if (!isMoreInfoOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!moreInfoRef.current) return;
+      if (!moreInfoRef.current.contains(event.target as Node)) {
+        setIsMoreInfoOpen(false);
+      }
+    };
+
+    window.addEventListener("pointerdown", handleClickOutside);
+    return () => window.removeEventListener("pointerdown", handleClickOutside);
+  }, [isMoreInfoOpen]);
 
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-6 py-28">
+    <section id="projects" className="relative mx-auto max-w-6xl scroll-mt-28 px-6 py-28">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -206,7 +244,7 @@ export function Projects() {
                 y: -8,
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className={`group cursor-pointer rounded-3xl bg-card border border-white/5 p-6 text-left hover:bg-white/[0.015] transition-all duration-500 ${project.glow}`}
+              className={`group cursor-pointer rounded-3xl bg-card border border-white/5 p-6 text-left hover:bg-white/[0.015] transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${project.glow}`}
               aria-label={`Open case study: ${project.title}`}
               onClick={() => setSelectedProject(project)}
             >
@@ -274,10 +312,36 @@ export function Projects() {
 
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-background/18 to-background/72" />
 
-          <div className="pointer-events-none absolute inset-x-0 top-8 z-10 flex justify-center">
-            <span className="rounded-full border border-white/15 bg-black/25 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-sm">
-              More on request
-            </span>
+          <div className="absolute inset-x-0 top-8 z-10 flex justify-center">
+            <div ref={moreInfoRef} className="group relative pointer-events-auto">
+              <button
+                type="button"
+                onClick={() => setIsMoreInfoOpen((prev) => !prev)}
+                aria-expanded={isMoreInfoOpen}
+                aria-label="More project info on request"
+                className="rounded-full border border-white/15 bg-black/25 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-sm transition-colors duration-300 hover:text-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                More on request
+              </button>
+
+              <div
+                className={cn(
+                  "absolute left-1/2 top-full mt-3 w-[300px] -translate-x-1/2 rounded-2xl border border-white/10 bg-card/85 p-4 text-left text-xs leading-relaxed text-white/70 shadow-[0_18px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-300",
+                  "opacity-0 pointer-events-none translate-y-2",
+                  "group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100",
+                  isMoreInfoOpen && "pointer-events-auto translate-y-0 opacity-100",
+                )}
+              >
+                Contact me if you want to know more about this project or other
+                projects I have worked on.
+                <a
+                  href="#contact"
+                  className="pointer-events-auto mt-2 block font-medium text-rose-300/85 transition-colors hover:text-rose-200"
+                >
+                  Go to contact section
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -290,6 +354,7 @@ export function Projects() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md"
+              aria-hidden="true"
               onClick={() => setSelectedProject(null)}
             />
             <motion.div
@@ -298,6 +363,9 @@ export function Projects() {
               exit={{ opacity: 0, y: 60, scale: 0.94 }}
               transition={{ type: "spring", damping: 28, stiffness: 220 }}
               className="fixed inset-x-4 bottom-4 top-24 md:inset-x-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:w-[640px] md:max-h-[85vh] z-50 bg-card border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`project-dialog-title-${selectedProject.id}`}
             >
               <div className="h-52 w-full relative overflow-hidden bg-[#12080f] flex-shrink-0">
                 {selectedProject.type === "mobile" ? (
@@ -322,15 +390,21 @@ export function Projects() {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-card/90" />
                 <button
+                  ref={closeButtonRef}
+                  type="button"
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white/60 hover:text-white transition-colors"
+                  aria-label="Close project details"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white/60 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60"
                 >
                   <X size={18} />
                 </button>
               </div>
               <div className="px-8 py-5 border-b border-white/8">
                 <div className="flex items-center gap-3">
-                  <h3 className="text-2xl font-display font-medium text-white">
+                  <h3
+                    id={`project-dialog-title-${selectedProject.id}`}
+                    className="text-2xl font-display font-medium text-white"
+                  >
                     {selectedProject.title}
                   </h3>
                   <span

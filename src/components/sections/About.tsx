@@ -61,7 +61,7 @@ const certifications = [
 
 export function About() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section id="about" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

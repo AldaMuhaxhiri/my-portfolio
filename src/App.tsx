@@ -1,6 +1,7 @@
 import { Route, Switch } from "wouter";
 
 import NotFound from "@/pages/not-found";
+import { OrbitalNav } from "./components/layout/OrbitalNav";
 import About from "./components/sections/About";
 import { Contact } from "./components/sections/Contact";
 import { Hero } from "./components/sections/Hero";
@@ -42,7 +43,10 @@ function Router() {
 
 function App() {
   return (
-    <Router />
+    <>
+      <OrbitalNav />
+      <Router />
+    </>
   );
 }
 

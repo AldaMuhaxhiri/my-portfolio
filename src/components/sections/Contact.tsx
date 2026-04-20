@@ -4,7 +4,7 @@ import cvFile from "@assets/Alda_Muhaxhiri_CV.pdf";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative mx-auto max-w-6xl overflow-hidden px-6 py-28 text-center">
+    <section id="contact" className="relative mx-auto max-w-6xl scroll-mt-28 overflow-hidden px-6 py-28 text-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -134,6 +134,10 @@ export function Contact() {
             <Download className="h-4.5 w-4.5" />
           </a>
         </motion.div>
+        <div className="mx-auto mt-12 h-px w-full max-w-md bg-gradient-to-r from-transparent via-white/14 to-transparent" />
+        <p className="mt-4 text-[11px] uppercase tracking-[0.16em] text-white/30">
+          © {new Date().getFullYear()} Alda Muhaxhiri. All rights reserved.
+        </p>
       </motion.div>
     </section>
   );
