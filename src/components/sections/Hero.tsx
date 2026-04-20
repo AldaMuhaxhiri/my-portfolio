@@ -29,7 +29,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl lg:text-[96px] font-display font-medium tracking-tight leading-[1] mb-4"
+            className="text-5xl sm:text-6xl md:text-8xl lg:text-[96px] font-display font-medium tracking-tight leading-[1] mb-4"
           >
             <span className="gradient-shimmer">Alda</span>
             <span className="text-white"> Muhaxhiri</span>
@@ -38,7 +38,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl md:text-3xl font-display font-light text-white/60 tracking-wide"
+            className="text-xl sm:text-2xl md:text-3xl font-display font-light text-white/60 tracking-wide"
           >
             Frontend Developer
           </motion.p>
@@ -81,7 +81,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="mt-16 flex items-center justify-center gap-8 text-xs text-white/25 tracking-widest uppercase"
+          className="mt-16 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/25 tracking-widest uppercase"
         >
           {["React JS", "Next.js", "TypeScript", "React Native"].map(
             (tech, i) => (
@@ -102,7 +102,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

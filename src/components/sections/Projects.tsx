@@ -114,6 +114,9 @@ function PhoneMockup({ image, title }: { image: string; title: string }) {
           <img
             src={image}
             alt={title}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 768px) 35vw, 120px"
             className="w-full h-full object-cover object-top"
           />
         </div>
@@ -125,6 +128,9 @@ function PhoneMockup({ image, title }: { image: string; title: string }) {
           <img
             src={image}
             alt={title}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 768px) 25vw, 96px"
             className="w-full h-full object-cover object-top scale-110"
           />
         </div>
@@ -157,6 +163,9 @@ function BrowserMockup({
         <img
           src={image}
           alt={title}
+          loading="lazy"
+          decoding="async"
+          sizes="(max-width: 768px) 88vw, (max-width: 1200px) 44vw, 360px"
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
       </div>
@@ -186,8 +195,9 @@ export function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.button
               key={project.id}
+              type="button"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -196,7 +206,8 @@ export function Projects() {
                 y: -8,
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className={`group cursor-pointer rounded-3xl bg-card border border-white/5 p-6 hover:bg-white/[0.015] transition-all duration-500 ${project.glow}`}
+              className={`group cursor-pointer rounded-3xl bg-card border border-white/5 p-6 text-left hover:bg-white/[0.015] transition-all duration-500 ${project.glow}`}
+              aria-label={`Open case study: ${project.title}`}
               onClick={() => setSelectedProject(project)}
             >
               {project.type === "mobile" ? (
@@ -242,11 +253,11 @@ export function Projects() {
                   </span>
                 )}
               </div>
-              <div className="mt-5 flex items-center justify-end text-[11px] uppercase tracking-[0.14em] text-white/35 group-hover:text-white/70 transition-colors">
-              see more
+              <div className="mt-5 flex items-center justify-end text-[11px] uppercase tracking-[0.14em] text-white/35 transition-colors group-hover:text-white/70">
+                See more
                 <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
 
