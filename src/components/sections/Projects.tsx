@@ -211,9 +211,9 @@ export function Projects() {
               onClick={() => setSelectedProject(project)}
             >
               {project.type === "mobile" ? (
-                <div className="relative bg-gradient-to-br from-white/[0.03] to-transparent rounded-2xl mb-6 flex items-center justify-center overflow-hidden h-52">
+                <div className="relative mb-6 flex h-52 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-white/[0.03] to-transparent">
                   <PhoneMockup image={project.image} title={project.title} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
                 </div>
               ) : (
                 <div className="mb-6 group">
