@@ -32,7 +32,7 @@ export function Hero() {
             className="text-5xl sm:text-6xl md:text-8xl lg:text-[96px] font-display font-medium tracking-tight leading-[1] mb-4"
           >
             <span className="gradient-shimmer">Alda</span>
-            <span className="text-white"> Muhaxhiri</span>
+            <span className="gradient-shimmer"> Muhaxhiri</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
