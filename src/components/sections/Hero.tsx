@@ -21,7 +21,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xl md:text-2xl font-display font-light text-white/40 mb-3"
+            className="text-xl md:text-2xl font-display font-light text-foreground/45 mb-3"
           >
             I'm
           </motion.p>
@@ -38,9 +38,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xl sm:text-2xl md:text-3xl font-display font-light text-white/60 tracking-wide"
+            className="text-xl sm:text-2xl md:text-3xl font-display font-light text-foreground/68 tracking-wide"
           >
-            Frontend Developer
+            Frontend Developer - Web & Mobile
           </motion.p>
         </div>
 
@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base md:text-lg text-white/35 font-light mb-14 max-w-lg mx-auto leading-relaxed"
+          className="text-base md:text-lg text-muted-foreground font-light mb-14 max-w-lg mx-auto leading-relaxed"
         >
           Crafting precise, beautiful web and mobile experiences,
           {""} <br></br>
@@ -59,7 +59,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
             href="#projects"
@@ -71,7 +71,7 @@ export function Hero() {
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 rounded-full text-white/70 font-medium hover:text-white transition-all duration-300 w-full sm:w-auto backdrop-blur-sm border border-white/10 hover:border-rose-500/30 hover:bg-rose-500/5"
+            className="px-8 py-4 rounded-full text-foreground/72 font-medium hover:text-foreground transition-all duration-300 w-full sm:w-auto backdrop-blur-sm border border-border hover:border-rose-500/30 hover:bg-rose-500/5"
           >
             Get in Touch
           </a>
@@ -81,7 +81,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/25 tracking-widest uppercase"
+          className="mt-14 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground tracking-widest uppercase"
         >
           {["React JS", "Next.js", "TypeScript", "React Native"].map(
             (tech, i) => (

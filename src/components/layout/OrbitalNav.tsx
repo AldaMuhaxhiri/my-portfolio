@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
-import { Briefcase, Home, Mail, Sparkles, UserRound } from "lucide-react";
+import {
+  Briefcase,
+  Home,
+  Mail,
+  Sparkles,
+  UserRound,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ComponentType, MouseEvent } from "react";
 import { useLocation } from "wouter";
@@ -127,9 +133,9 @@ export function OrbitalNav() {
         aria-label="Primary"
       >
         <div className="pointer-events-none absolute inset-0 -z-20 rounded-full bg-gradient-to-r from-rose-500/16 via-fuchsia-500/18 to-pink-500/16 blur-2xl" />
-        <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-black/30 backdrop-blur-xl" />
+        <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-card/75 backdrop-blur-xl" />
 
-        <div className="relative overflow-hidden rounded-full border border-white/10 bg-black/25 px-2.5 py-2 shadow-[0_14px_50px_rgba(3,3,10,0.45)]">
+        <div className="relative overflow-hidden rounded-full border border-border bg-card/80 px-2.5 py-2 shadow-[0_14px_50px_rgba(3,3,10,0.18)]">
           <ul className="flex items-center gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
@@ -140,7 +146,7 @@ export function OrbitalNav() {
                   {isActive ? (
                     <motion.span
                       layoutId="orbital-nav-active"
-                      className="absolute inset-0 rounded-full bg-white/10"
+                      className="absolute inset-0 rounded-full bg-foreground/10"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   ) : null}
@@ -150,7 +156,7 @@ export function OrbitalNav() {
                     onClick={(event) => handleNavClick(event, item)}
                     className={cn(
                       "relative inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-medium tracking-[0.12em] uppercase transition-all duration-300",
-                      "text-white/62 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-black/70",
+                      "text-foreground/68 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     )}
                   >
                     <Icon className="h-3.5 w-3.5 sm:hidden" />
