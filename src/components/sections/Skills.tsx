@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 const skills = [
   {
     category: "Frontend",
-    color: "bg-rose-500/10 text-rose-300 border-rose-500/20",
+    color: "bg-rose-500/10 text-rose-500 border-rose-500/25",
     dot: "bg-rose-400",
     items: ["React.js", "React Native", "Next.js", "TypeScript", "JavaScript", "Vite", "Redux", "RTK Query", "Zustand"]
   },
   {
     category: "Tools",
-    color: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/20",
+    color: "bg-fuchsia-500/10 text-fuchsia-500 border-fuchsia-500/25",
     dot: "bg-fuchsia-400",
     items: ["Node.js", "Express.js", "MySQL", "Redis", "Git", "Expo", "Firebase", "Socket.io", "Pusher", "Xcode", "Jira", "Cloudflare"]
   },
   {
     category: "Design",
-    color: "bg-pink-500/10 text-pink-300 border-pink-500/20",
+    color: "bg-pink-500/10 text-pink-500 border-pink-500/25",
     dot: "bg-pink-400",
     items: ["Tailwind", "Bootstrap", "HTML5", "Responsive Design", "UI/UX", "Design Systems", "Accessibility"]
   }
@@ -23,7 +23,7 @@ const skills = [
 
 export function Skills() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section id="skills" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export function Skills() {
         className="grid grid-cols-1 lg:grid-cols-4 gap-12"
       >
         <div className="lg:col-span-1">
-          <h2 className="text-3xl md:text-4xl font-display font-medium text-white mb-6">Expertise</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-medium text-foreground mb-6">Expertise</h2>
           <p className="text-muted-foreground text-sm leading-relaxed">Full-stack capable, frontend-focused. Building for performance, scale, and real users.</p>
         </div>
 
@@ -47,7 +47,7 @@ export function Skills() {
             >
               <div className="flex items-center gap-2 mb-5">
                 <span className={`w-2 h-2 rounded-full ${group.dot}`} />
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/40">{group.category}</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{group.category}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item, i) => (

@@ -36,10 +36,10 @@ export default function NotFound() {
           </span>
         </motion.div>
 
-        <h1 className="mb-4 font-display text-5xl font-medium tracking-tight text-white md:text-6xl">
+        <h1 className="mb-4 font-display text-5xl font-medium tracking-tight text-foreground md:text-6xl">
           <span className="gradient-shimmer">Page not found</span>
         </h1>
-        <p className="mx-auto mb-10 max-w-lg text-sm leading-relaxed text-white/55 md:text-base">
+        <p className="mx-auto mb-10 max-w-lg text-sm leading-relaxed text-muted-foreground md:text-base">
           The page you are looking for does not exist or may have moved. Let
           us get you back to the homepage.
         </p>
@@ -58,7 +58,7 @@ export default function NotFound() {
           <button
             type="button"
             onClick={() => window.history.back()}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/6 px-7 py-3.5 font-medium text-white/70 ring-1 ring-inset ring-white/8 transition-all duration-300 hover:bg-rose-500/10 hover:text-white hover:ring-rose-500/20 sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-card/75 px-7 py-3.5 font-medium text-foreground/75 ring-1 ring-inset ring-border transition-all duration-300 hover:bg-rose-500/10 hover:text-foreground hover:ring-rose-500/20 sm:w-auto"
           >
             <ArrowLeft className="h-4 w-4" />
             Go back

@@ -61,7 +61,7 @@ const certifications = [
 
 export function About() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
+    <section id="about" className="mx-auto max-w-6xl scroll-mt-28 px-6 py-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export function About() {
         className="grid grid-cols-1 lg:grid-cols-2 gap-20"
       >
         <div>
-          <h2 className="text-3xl md:text-4xl font-display font-medium text-white mb-10">
+          <h2 className="text-3xl md:text-4xl font-display font-medium text-foreground mb-10">
             About
           </h2>
           <p className="text-xl md:text-2xl leading-relaxed font-light text-muted-foreground mb-10">
@@ -103,10 +103,10 @@ export function About() {
                 <span
                   className={`absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full ${job.dot} ring-2 ring-background`}
                 />
-                <p className="text-[10px] text-white/30 uppercase tracking-[0.15em] mb-1">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-1">
                   {job.period}
                 </p>
-                <p className="text-white font-medium text-sm">
+                <p className="text-foreground font-medium text-sm">
                   {job.role} — {job.company}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
@@ -118,7 +118,7 @@ export function About() {
         </div>
 
         <div>
-          <h2 className="text-3xl md:text-4xl font-display font-medium text-white mb-10">
+          <h2 className="text-3xl md:text-4xl font-display font-medium text-foreground mb-10">
             Certifications
           </h2>
           <div className="space-y-3">
@@ -137,15 +137,15 @@ export function About() {
                     className={`w-1.5 h-1.5 rounded-full ${cert.dot} shrink-0`}
                   />
                   <div>
-                    <p className="text-white font-medium text-sm">
+                    <p className="text-foreground font-medium text-sm">
                       {cert.title}
                     </p>
-                    <p className="text-white/35 text-xs mt-0.5">
+                    <p className="text-muted-foreground text-xs mt-0.5">
                       {cert.issuer}
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-white/25 shrink-0">
+                <span className="text-xs text-muted-foreground shrink-0">
                   {cert.year}
                 </span>
               </motion.div>

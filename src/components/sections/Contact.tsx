@@ -4,7 +4,7 @@ import cvFile from "@assets/Alda_Muhaxhiri_CV.pdf";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative mx-auto max-w-6xl overflow-hidden px-6 py-28 text-center">
+    <section id="contact" className="relative mx-auto max-w-6xl scroll-mt-28 overflow-hidden px-6 py-28 text-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -23,25 +23,31 @@ export function Contact() {
         </motion.p>
 
         <h2 className="text-5xl md:text-7xl font-display font-medium tracking-tight mb-6">
-          <span className="text-white">Let's build something </span>
+          <span className="text-foreground">Let's build something </span>
           <span className="gradient-shimmer">meaningful.</span>
         </h2>
 
         <p className="text-lg text-muted-foreground font-light mb-14">
-          Open to mid-level roles and selective freelance projects.
+          Open to frontend roles and select freelance projects.
         </p>
 
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45">
-          <span className="rounded-full border border-white/10 px-3 py-1.5">
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="rounded-full border border-border px-3 py-1.5">
             Frontend Engineer
           </span>
-          <span className="rounded-full border border-white/10 px-3 py-1.5">
-            React / TypeScript
+          <span className="rounded-full border border-border px-3 py-1.5">
+            React / Next.js / TypeScript
           </span>
-          <span className="rounded-full border border-white/10 px-3 py-1.5">
+          <span className="rounded-full border border-border px-3 py-1.5">
             Remote-friendly
           </span>
         </div>
+
+        <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          If you are building a product that needs polished UI, strong
+          frontend architecture, and reliable delivery, I would love to
+          collaborate.
+        </p>
 
         <motion.a
           href="mailto:aldamuhaxhiri14@gmail.com"
@@ -54,7 +60,7 @@ export function Contact() {
           <span className="relative text-white">Say Hello →</span>
         </motion.a>
 
-        <p className="mt-5 text-xs text-white/40">
+        <p className="mt-5 text-xs text-muted-foreground">
           Usually replies within 24 hours.
         </p>
 
@@ -63,17 +69,17 @@ export function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-4 text-sm text-white/25"
+          className="mt-12 flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground"
         >
-          <a href="tel:+38348749559" className="transition hover:text-white/70">
+          <a href="tel:+38348749559" className="transition hover:text-foreground/80">
             +383 48 749 559
           </a>
-          <span className="h-4 w-px bg-white/10" />
+          <span className="h-4 w-px bg-border" />
           <a
             href="https://maps.google.com/?q=Prishtine,Kosovo"
             target="_blank"
             rel="noreferrer"
-            className="transition hover:text-white/70"
+            className="transition hover:text-foreground/80"
           >
             Prishtine, Kosovo
           </a>
@@ -91,7 +97,7 @@ export function Contact() {
             target="_blank"
             rel="noreferrer"
             aria-label="Open LinkedIn profile"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-white/70 transition hover:border-rose-400/35 hover:text-rose-200"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-foreground/75 transition hover:border-rose-400/35 hover:text-rose-500"
           >
             <svg
               viewBox="0 0 24 24"
@@ -105,7 +111,7 @@ export function Contact() {
           <a
             href="mailto:aldamuhaxhiri14@gmail.com"
             aria-label="Send email"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-white/70 transition hover:border-rose-400/35 hover:text-rose-200"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-foreground/75 transition hover:border-rose-400/35 hover:text-rose-500"
           >
             <Mail className="h-4.5 w-4.5" />
           </a>
@@ -114,7 +120,7 @@ export function Contact() {
             target="_blank"
             rel="noreferrer"
             aria-label="Open GitHub profile"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-white/70 transition hover:border-rose-400/35 hover:text-rose-200"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-foreground/75 transition hover:border-rose-400/35 hover:text-rose-500"
           >
             <svg
               viewBox="0 0 24 24"
@@ -129,11 +135,12 @@ export function Contact() {
             href={cvFile}
             download="Alda_Muhaxhiri_CV.pdf"
             aria-label="Download CV"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.03] text-white/70 transition hover:border-rose-400/35 hover:text-rose-200"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-foreground/75 transition hover:border-rose-400/35 hover:text-rose-500"
           >
             <Download className="h-4.5 w-4.5" />
           </a>
         </motion.div>
+
       </motion.div>
     </section>
   );
