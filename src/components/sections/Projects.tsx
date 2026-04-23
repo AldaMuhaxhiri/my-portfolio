@@ -348,12 +348,12 @@ export function Projects() {
               )}
 
               <div className="mb-2 flex items-start justify-between gap-2">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-2">
                   <h3 className="text-xl font-display font-medium text-foreground">
                     {project.title}
                   </h3>
                   {project.status === "ongoing" && (
-                    <span className="rounded-full border border-emerald-500/45 bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-200 dark:border-emerald-400/35 dark:bg-emerald-400/10 dark:text-emerald-500">
+                    <span className="rounded-full border border-emerald-500/45 bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-700 dark:border-emerald-400/35 dark:bg-emerald-400/10 dark:text-emerald-300">
                       Active
                     </span>
                   )}
@@ -477,7 +477,7 @@ export function Projects() {
             >
               <div className="px-8 py-5 border-b border-border">
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex flex-wrap items-center gap-2">
                     <h3
                       id={`project-dialog-title-${selectedProject.id}`}
                       className="text-2xl font-display font-medium text-foreground"
