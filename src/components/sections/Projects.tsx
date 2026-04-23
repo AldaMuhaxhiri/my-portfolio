@@ -12,6 +12,7 @@ interface Project {
   id: string;
   title: string;
   subtitle: string;
+  status?: "ongoing";
   tags: string[];
   image: string;
   type: "mobile" | "web";
@@ -30,6 +31,7 @@ const projects: Project[] = [
     id: "trackino",
     title: "Trackino Mobile",
     subtitle: "Mobile app for business operations.",
+    status: "ongoing",
     tags: [
       "React Native",
       "Expo",
@@ -48,7 +50,7 @@ const projects: Project[] = [
     approach:
       "Built a centralized platform that brings core workflows into one place with role-based access and shared data. Added live analytics and operational dashboards so teams could act from the same source of truth.",
     result:
-      "The platform replaced multiple internal tools and reduced day-to-day admin overhead. Teams gained clearer operational visibility and faster reporting across departments.",
+      "This is an ongoing project currently in active development. The mobile platform is already improving operational visibility and reducing day-to-day admin overhead as new modules continue to roll out.",
   },
   {
     id: "trackino-web-dashboard",
@@ -345,15 +347,24 @@ export function Projects() {
                 </div>
               )}
 
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <h3 className="text-xl font-display font-medium text-foreground">
-                  {project.title}
-                </h3>
-                <span
-                  className={`text-[10px] px-2.5 py-1 rounded-full border font-medium shrink-0 mt-0.5 ${project.tagColor}`}
-                >
-                  {project.type === "mobile" ? "iOS & Android" : "Web"}
-                </span>
+              <div className="mb-2 flex items-start justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-xl font-display font-medium text-foreground">
+                    {project.title}
+                  </h3>
+                  {project.status === "ongoing" && (
+                    <span className="rounded-full border border-emerald-500/45 bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-200 dark:border-emerald-400/35 dark:bg-emerald-400/10 dark:text-emerald-500">
+                      Active
+                    </span>
+                  )}
+                </div>
+                <div className="mt-0.5 flex shrink-0 flex-col items-end gap-1">
+                  <span
+                    className={`rounded-full border px-2.5 py-1 text-[10px] font-medium ${project.tagColor}`}
+                  >
+                    {project.type === "mobile" ? "iOS & Android" : "Web"}
+                  </span>
+                </div>
               </div>
               <p className="text-muted-foreground text-sm mb-5">
                 {project.subtitle}
@@ -466,12 +477,13 @@ export function Projects() {
             >
               <div className="px-8 py-5 border-b border-border">
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2.5">
                     <h3
                       id={`project-dialog-title-${selectedProject.id}`}
                       className="text-2xl font-display font-medium text-foreground"
                     >
                       {selectedProject.title}
+                      
                     </h3>
                     <span
                       className={`text-[10px] px-2.5 py-1 rounded-full border font-medium ${selectedProject.tagColor}`}
@@ -480,6 +492,11 @@ export function Projects() {
                         ? "iOS & Android"
                         : "Web"}
                     </span>
+                    {selectedProject.status === "ongoing" && (
+                      <span className="rounded-full border border-emerald-500/45 bg-emerald-500/15 px-2.5 py-1 text-[10px] font-medium text-emerald-800 dark:border-emerald-400/35 dark:bg-emerald-400/10 dark:text-emerald-300">
+                        Active
+                      </span>
+                    )}
                   </div>
                   <button
                     ref={closeButtonRef}
