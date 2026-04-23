@@ -223,7 +223,11 @@ function BrowserMockup({
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isMoreInfoOpen, setIsMoreInfoOpen] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 767px)").matches
+      : false,
+  );
   const moreInfoRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -270,14 +274,11 @@ export function Projects() {
     return () => window.removeEventListener("pointerdown", handleClickOutside);
   }, [isMoreInfoOpen]);
 
+  const shouldAnimateProjects = !isMobileViewport;
+
   return (
     <section id="projects" className="relative mx-auto max-w-6xl scroll-mt-28 px-6 py-28">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <div>
         <div className="mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-medium text-foreground mb-3">
             Selected Work
@@ -292,21 +293,27 @@ export function Projects() {
             <motion.button
               key={project.id}
               type="button"
-              initial={{ opacity: 0, y: isMobileViewport ? 12 : 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: isMobileViewport ? 0.35 : 0.6,
-                delay: isMobileViewport ? 0 : index * 0.14,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+              initial={shouldAnimateProjects ? { opacity: 0, y: 30 } : false}
+              whileInView={
+                shouldAnimateProjects ? { opacity: 1, y: 0 } : undefined
+              }
+              viewport={shouldAnimateProjects ? { once: true } : undefined}
+              transition={
+                shouldAnimateProjects
+                  ? {
+                      duration: 0.6,
+                      delay: index * 0.14,
+                      ease: [0.16, 1, 0.3, 1],
+                    }
+                  : undefined
+              }
               whileHover={
-                isMobileViewport
-                  ? undefined
-                  : {
+                shouldAnimateProjects
+                  ? {
                       y: -8,
                       transition: { duration: 0.3, ease: "easeOut" },
                     }
+                  : undefined
               }
               className={cn(
                 "group cursor-pointer rounded-3xl border border-border/80 bg-card/90 p-6 text-left shadow-[0_8px_24px_rgba(28,16,26,0.04)] hover:bg-card hover:shadow-[0_12px_30px_rgba(28,16,26,0.08)] transition-all duration-500 dark:border-border dark:bg-card dark:shadow-none dark:hover:bg-white/[0.015] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -388,38 +395,53 @@ export function Projects() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-background/18 to-background/72" />
 
           <div className="absolute inset-x-0 top-8 z-10 flex justify-center">
-            <div ref={moreInfoRef} className="group relative pointer-events-auto">
+            <div ref={moreInfoRef} className="relative pointer-events-auto">
               <button
                 type="button"
                 onClick={() => setIsMoreInfoOpen((prev) => !prev)}
                 aria-expanded={isMoreInfoOpen}
+                aria-controls="projects-more-request-popup"
                 aria-label="More project info on request"
-                className="rounded-full border border-border bg-card/85 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/70 backdrop-blur-sm transition-colors duration-300 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="rounded-full border border-border bg-card/85 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/70 backdrop-blur-sm transition-all duration-300 hover:border-rose-400/35 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 More on request
               </button>
 
-              <div
-                className={cn(
-                  "absolute left-1/2 top-full mt-3 w-[300px] -translate-x-1/2 rounded-2xl border border-border bg-card/95 p-4 text-left text-xs leading-relaxed text-foreground/75 shadow-[0_18px_50px_rgba(0,0,0,0.25)] backdrop-blur-xl transition-all duration-300",
-                  "opacity-0 pointer-events-none translate-y-2",
-                  "group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100",
-                  isMoreInfoOpen && "pointer-events-auto translate-y-0 opacity-100",
+              <AnimatePresence>
+                {isMoreInfoOpen && (
+                  <motion.div
+                    id="projects-more-request-popup"
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute left-1/2 top-full mt-3 w-[320px] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-card/95 text-left shadow-[0_24px_60px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+                  >
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,63,94,0.12),transparent_48%)]" />
+                    <div className="relative p-4">
+                      <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-rose-400/80">
+                        Need more details?
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-foreground/80">
+                        I can share architecture decisions, challenges, and
+                        execution details from these projects.
+                      </p>
+                      <a
+                        href="#contact"
+                        onClick={() => setIsMoreInfoOpen(false)}
+                        className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-rose-400/35 bg-rose-500/10 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-rose-600 transition-colors hover:bg-rose-500/20 hover:text-white dark:text-rose-300 dark:hover:text-white"
+                      >
+                        Go to contact
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
+                    </div>
+                  </motion.div>
                 )}
-              >
-                Contact me if you want to know more about this project or other
-                projects I have worked on.
-                <a
-                  href="#contact"
-                  className="pointer-events-auto mt-2 block font-medium text-rose-300/85 transition-colors hover:text-rose-200"
-                >
-                  Go to contact section
-                </a>
-              </div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <AnimatePresence>
         {selectedProject && (

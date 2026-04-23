@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Download, Mail } from "lucide-react";
-import cvFile from "@assets/Alda_Muhaxhiri_CV.pdf";
+import cvFile from "@assets/AldaCV.pdf";
 
 export function Contact() {
   return (
@@ -133,7 +133,7 @@ export function Contact() {
           </a>
           <a
             href={cvFile}
-            download="Alda_Muhaxhiri_CV.pdf"
+            download="AldaCV.pdf"
             aria-label="Download CV"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-foreground/75 transition hover:border-rose-400/35 hover:text-rose-500"
           >
