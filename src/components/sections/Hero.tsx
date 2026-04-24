@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { ParticleNetworkCanvas } from "@/components/ui/ParticleNetworkCanvas";
 
 export function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-transparent px-6 pt-20 pb-24">
+      <ParticleNetworkCanvas />
       <div className="relative z-10 mx-auto max-w-6xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -98,18 +100,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 1 }}
-        className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-12 bg-gradient-to-b from-rose-400/50 to-transparent"
-        />
-      </motion.div>
     </section>
   );
 }
