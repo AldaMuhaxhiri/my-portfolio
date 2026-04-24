@@ -30,7 +30,7 @@
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-border: hsl(var(--border));
   --font-display: "Bricolage Grotesque", sans-serif;
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Bricolage Grotesque", sans-serif;
 }
 
 html {
